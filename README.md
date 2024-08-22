@@ -120,6 +120,55 @@ This project involves building an ETL (Extract, Transform, Load) process to comb
 - **Table Output Step**:
   - Load the final transformed data into a MySQL database.
   - Configure the step to insert or update records in the target table.
+ 
+
+
+
+
+
+
+
+
+
+
+# Customer Purchase Analysis
+
+## Project Overview
+The **Customer Purchase Analysis** project aims to analyze customer purchase data to identify trends and insights, such as frequent buyers, average purchase value, and seasonal trends.
+
+## Objective
+The main objective is to extract, transform, and load (ETL) customer, purchase, and product data from CSV files into a staging area or database, followed by data visualization to derive actionable insights.
+
+## Data Sources
+- **Customer Data:** Contains customer details (CustomerID, Name, Location).
+- **Purchase Data:** Contains purchase transactions (PurchaseID, CustomerID, Date, Amount, ProductID).
+- **Product Data:** Contains product details (ProductID, ProductName, Category, Price).
+
+## Tools
+- **Pentaho Data Integration (Kettle):** For ETL processes.
+- **CSV Files:** For data input.
+
+## Steps
+
+### 1. Data Integration
+1. **Create a New Transformation:**
+   - Open Pentaho Data Integration and create a new transformation.
+
+2. **Extract Data:**
+   - Add CSV Input steps for each data source (customers.csv, purchases.csv, products.csv).
+   - Configure the steps to map the appropriate fields.
+
+3. **Transform Data:**
+   - **Join Rows:** Combine customer, purchase, and product data using the `Merge Join` step.
+   - **Filter Rows:** Remove unwanted data or focus on specific records.
+   - **Group By:** Aggregate data (e.g., total spend per customer).
+
+4. **Load Data:**
+   - Output the transformed data to a database or CSV files using the `Text File Output` steps.
+
+## Summary
+This project sets up a comprehensive ETL solution for analyzing customer purchases, generating meaningful insights through data integration, transformation.
+
 
 
 
