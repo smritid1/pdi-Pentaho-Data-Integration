@@ -39,9 +39,88 @@ This project involves building an ETL (Extract, Transform, Load) process that ex
 - **Save Transformation**: Save the transformation.
 - **Execute Transformation**: Run the transformation and monitor the execution results to ensure data is loaded successfully.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ETL Process: Multi-Source Sales Data Pipeline
+
+## Project Overview
+
+This project involves building an ETL (Extract, Transform, Load) process to combine sales data from multiple sources, clean and enrich the data, and load it into a MySQL database for reporting purposes.
+
+## Objective
+
+- **Extract**: Retrieve sales data from CSV and Excel files, and currency exchange rates via a REST API.
+- **Transform**: Cleanse and enrich the data, join datasets, convert currencies, and aggregate sales data.
+- **Load**: Store the final transformed data into a MySQL database for analysis and reporting.
+
 ## Tools Used
 
-- **Pentaho Data Integration (PDI)**: For designing and running the ETL process.
-- **MySQL**: As the target database for storing the transformed sales data.
+- **Pentaho Data Integration (Spoon)**
+- **MySQL**
+- **CSV files**
+- **Excel files**
+- **REST API**
+
+## Steps
+
+### Step 1: Extract Data from Multiple Sources
+
+- **CSV Input Step**:
+  - Load sales data from a CSV file.
+  - Map columns such as `ProductID`, `Quantity`, and `Price`.
+
+- **Excel Input Step**:
+  - Load product data from an Excel file.
+  - Map columns such as `ProductID`, `ProductName`.
+
+- **REST Client Step**:
+  - Retrieve the latest currency exchange rates using a REST API.
+  - Parse the JSON response to extract relevant fields like `Currency` and `ExchangeRate`.
+
+### Step 2: Join and Enrich the Data
+
+- **Join Rows (Sales and Product Data)**:
+  - Merge sales data from the CSV file with product data from the Excel file using `ProductID`.
+
+- **Add Constants (Currency)**:
+  - Add a constant value for currency, such as USD, to the dataset.
+
+- **Join Rows (Sales with Exchange Rates)**:
+  - Join the enriched sales data with the currency exchange rates using the `Currency` field as the join key.
+
+- **Calculator Step (Convert Prices)**:
+  - Calculate converted prices by multiplying `Price` by `ExchangeRate`.
+
+### Step 3: Data Cleansing and Transformation
+
+- **Filter Rows (Invalid Data)**:
+  - Filter out invalid or missing data, such as rows where `ProductID` is missing.
+
+- **Group By (Aggregate Sales Data)**:
+  - Aggregate sales data by `ProductID`, calculating totals and averages.
+
+- **Sort Rows**:
+  - Sort the final dataset by `Date` or `TotalSales`.
+
+### Step 4: Load Data into MySQL
+
+- **Table Output Step**:
+  - Load the final transformed data into a MySQL database.
+  - Configure the step to insert or update records in the target table.
+
+
 
 
